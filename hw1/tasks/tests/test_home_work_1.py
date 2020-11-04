@@ -1,6 +1,11 @@
 import pytest
 
-from home_work_1.hw1 import *
+from home_work_1.hw1 import (
+    check_fibonacci,
+    check_sum_of_four,
+    find_maximal_subarray_sum,
+    find_maximum_and_minimum,
+)
 
 
 @pytest.mark.parametrize(

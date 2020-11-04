@@ -23,8 +23,8 @@ def check_fibonacci(data: Sequence) -> bool:
     :param data: A Sequence of integers
     :return: A True or False
     """
-    for _ in data:
-        if _is_fibonacci_number(_):
+    for value in data:
+        if _is_fibonacci_number(value):
             continue
         else:
             return False
@@ -37,12 +37,18 @@ def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
     :param file_name: path to the file
     :return: A tuple with maximum and minimum values
     """
-    total_values = list()
+    minimum, maximum = None, None
     with open(file_name) as fi:
         for line in fi:
-            total_values.extend([int(_) for _ in line.split(" ")])
-    sorted_total_values = sorted(total_values)
-    return sorted_total_values[0], sorted_total_values[-1]
+            temp_line = sorted([int(value) for value in line.split(" ")])
+            if minimum is None and maximum is None:
+                minimum, maximum = temp_line[0], temp_line[1]
+            else:
+                if temp_line[0] < minimum:
+                    minimum = temp_line[0]
+                if temp_line[-1] > maximum:
+                    maximum = temp_line[-1]
+    return minimum, maximum
 
 
 def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
@@ -79,9 +85,9 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
         subarray = deque(nums[:window_size])
         if sum(subarray) > result:
             result = sum(subarray)
-        for _ in nums[window_size:]:
+        for value in nums[window_size:]:
             subarray.popleft()
-            subarray.append(_)
+            subarray.append(value)
             if sum(subarray) > result:
                 result = sum(subarray)
     return result
