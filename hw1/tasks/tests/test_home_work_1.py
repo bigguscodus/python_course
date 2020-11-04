@@ -1,5 +1,4 @@
 import pytest
-
 from home_work_1.hw1 import (
     check_fibonacci,
     check_sum_of_four,
