@@ -3,22 +3,16 @@ from collections.abc import Callable
 
 def cache(times) -> Callable:
     def decorator(func):
-        cache_house = []
-        def wrapper(*args):
-            for stored_args, result in cache_house:
-                if stored_args == args:
-                    return result
-            result = func(*args)
-            cache_house.append((args, result))
-            return result
+        cache_house = {}
+        count_of_caching = {}
+        def wrapper(*args, **kwargs):
+            rest_times = count_of_caching.get(args, 0)
+            if rest_times < 1:
+                cache_house[args] = func(*args, **kwargs)
+                count_of_caching[args] = times
+            else:
+                count_of_caching[args] -= 1
+            return cache_house[args]
+
         return wrapper
     return decorator
-
-@cache(times=2)
-def f():
-    return input('? ')
-
-f()
-f()
-f()
-f()
