@@ -5,6 +5,7 @@ def cache(times) -> Callable:
     def decorator(func):
         cache_house = {}
         count_of_caching = {}
+
         def wrapper(*args, **kwargs):
             rest_times = count_of_caching.get(args, 0)
             if rest_times < 1:
@@ -15,4 +16,5 @@ def cache(times) -> Callable:
             return cache_house[args]
 
         return wrapper
+
     return decorator
