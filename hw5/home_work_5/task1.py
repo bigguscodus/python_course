@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     expired_homework = teacher.create_homework("Learn functions", 0)
     print(expired_homework.created)  # Example: 2019-05-26 16:44:30.688762
-    print(expired_homework.deadline)  # 0:00:00
+    print(expired_homework.deadline == datetime.timedelta(0))  # 0:00:00
     print(expired_homework.text)  # 'Learn functions'
 
     # create function from method and use it
