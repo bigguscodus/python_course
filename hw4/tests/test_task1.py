@@ -1,4 +1,4 @@
-import os
+ import os
 
 import pytest
 from home_work_4.task1 import read_magic_number
