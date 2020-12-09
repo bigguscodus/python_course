@@ -10,7 +10,7 @@ class SchoolParticipants:
 
 
 class Student(SchoolParticipants):
-    def do_homework(self, home_work: HomeWork, solution):
+    def do_homework(self, home_work: HomeWork, solution) -> HomeworkResult:
         if not home_work.is_active():
             raise DeadlineError("You are late")
         return HomeworkResult(self, home_work, solution)
@@ -20,16 +20,17 @@ class Teacher(SchoolParticipants):
     homework_done = defaultdict(set)
 
     @classmethod
-    def create_homework(cls, text: str, deadline: int):
+    def create_homework(cls, text: str, deadline: int) -> HomeWork:
         return HomeWork(text, deadline, None)
 
     @classmethod
-    def check_homework(cls, home_work_result: HomeworkResult):
+    def check_homework(cls, home_work_result: HomeworkResult) -> bool:
         if len(home_work_result.solution) < 5:
             return False
         return True
 
-    def reset_results(cls, homework=None):
+    @classmethod
+    def reset_results(cls, homework=None) -> defaultdict:
         if homework:
             del cls.homework_done[homework]
         else:

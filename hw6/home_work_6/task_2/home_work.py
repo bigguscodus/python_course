@@ -10,11 +10,7 @@ class HomeWork:
         )
         self.created = datetime.datetime.now()
 
-    def is_active(self):
-        print(datetime.datetime.now())
-        print(self.created)
-        print(self.deadline)
-        print(datetime.datetime.now() - self.created < self.deadline)
+    def is_active(self) -> bool:
         return datetime.datetime.now() - self.created < self.deadline
 
 
